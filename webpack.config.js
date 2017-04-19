@@ -5,20 +5,24 @@ module.exports = {
     filename: 'build.js'
   },
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue'
-      }
-    ]
+      rules: [
+        {
+            test: /\.js$/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['es2015'],
+                    plugins: ['babel-plugin-transform-runtime']
+                }
+            },
+            exclude: /node_modules/
+        },
+        {
+            test: /\.vue$/,
+            use: {
+                loader: 'vue-loader'
+            }
+        }
+      ]
   },
-  babel: {
-    presets: ['es2015'],
-    plugins: ['transform-runtime']
-  }
 }
